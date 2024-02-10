@@ -19,7 +19,7 @@ namespace Checkout.Specs.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CheckoutFeature : object, Xunit.IClassFixture<CheckoutFeature.FixtureData>, System.IDisposable
+    public partial class CheckoutWithSingleSpecialPriceFeature : object, Xunit.IClassFixture<CheckoutWithSingleSpecialPriceFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace Checkout.Specs.Features
 #line 1 "Checkout.feature"
 #line hidden
         
-        public CheckoutFeature(CheckoutFeature.FixtureData fixtureData, Checkout_Specs_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CheckoutWithSingleSpecialPriceFeature(CheckoutWithSingleSpecialPriceFeature.FixtureData fixtureData, Checkout_Specs_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace Checkout.Specs.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Checkout", "To be implemented...", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Checkout With Single Special Price", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,6 +80,79 @@ namespace Checkout.Specs.Features
             this.TestTearDown();
         }
         
+        [Xunit.SkippableTheoryAttribute(DisplayName="Sample Scenario given in the problem")]
+        [Xunit.TraitAttribute("FeatureTitle", "Checkout With Single Special Price")]
+        [Xunit.TraitAttribute("Description", "Sample Scenario given in the problem")]
+        [Xunit.InlineDataAttribute("A", "50", new string[0])]
+        [Xunit.InlineDataAttribute("AA", "100", new string[0])]
+        [Xunit.InlineDataAttribute("AAA", "130", new string[0])]
+        [Xunit.InlineDataAttribute("AAAA", "180", new string[0])]
+        [Xunit.InlineDataAttribute("B", "30", new string[0])]
+        [Xunit.InlineDataAttribute("BB", "45", new string[0])]
+        [Xunit.InlineDataAttribute("BBB", "85", new string[0])]
+        [Xunit.InlineDataAttribute("AB", "80", new string[0])]
+        [Xunit.InlineDataAttribute("AAABB", "175", new string[0])]
+        [Xunit.InlineDataAttribute("ABCD", "115", new string[0])]
+        public virtual void SampleScenarioGivenInTheProblem(string items, string totalPrice, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Items", items);
+            argumentsOfScenario.Add("Total Price", totalPrice);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sample Scenario given in the problem", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 3
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Item",
+                            "Unit Price",
+                            "Special Price"});
+                table1.AddRow(new string[] {
+                            "A",
+                            "50",
+                            "3 for 130"});
+                table1.AddRow(new string[] {
+                            "B",
+                            "30",
+                            "2 for 45"});
+                table1.AddRow(new string[] {
+                            "C",
+                            "20",
+                            ""});
+                table1.AddRow(new string[] {
+                            "D",
+                            "15",
+                            ""});
+#line 4
+ testRunner.Given("The following pricing rules:", ((string)(null)), table1, "Given ");
+#line hidden
+#line 10
+ testRunner.When(string.Format("The following items are scanned out: {0}", items), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.Then(string.Format("The total price should be: {0}", totalPrice), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
@@ -87,12 +160,12 @@ namespace Checkout.Specs.Features
             
             public FixtureData()
             {
-                CheckoutFeature.FeatureSetup();
+                CheckoutWithSingleSpecialPriceFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CheckoutFeature.FeatureTearDown();
+                CheckoutWithSingleSpecialPriceFeature.FeatureTearDown();
             }
         }
     }
