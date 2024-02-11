@@ -1,4 +1,6 @@
-using Checkout.Domain;
+using Checkout.Domain.Models;
+using Checkout.Domain.Services;
+using Checkout.Specs.Support;
 
 namespace Checkout.Specs.StepDefinitions
 {
@@ -34,21 +36,9 @@ namespace Checkout.Specs.StepDefinitions
         {
             var itemName = char.Parse(row["Item"]);
             var unitPrice = decimal.Parse(row["Unit Price"]);
-            var specialPrice = ParseSpecialPrice(row["Special Price"]);
+            var specialPrice = SpecialPriceParser.Parse(row["Special Price"]);
 
             return new PricingRule(itemName, unitPrice, specialPrice);
-        }
-
-        private static SpecialPrice? ParseSpecialPrice(string specialPriceStr)
-        {
-            if (string.IsNullOrWhiteSpace(specialPriceStr))
-            {
-                return null;
-            }
-            string[] tokens = specialPriceStr.Split(" for ");
-            int quantity = int.Parse(tokens[0]);
-            decimal price = decimal.Parse(tokens[1]);
-            return new SpecialPrice(quantity, price);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Checkout.Domain;
+﻿namespace Checkout.Domain.Models;
 
 /// <summary>
 /// A pricing rule with a normal price and an optional quantity-based special price.
