@@ -1,4 +1,6 @@
 using Checkout.Domain;
+using Checkout.Domain.Models;
+using Checkout.Domain.Services;
 
 namespace Checkout.Specs.StepDefinitions
 {

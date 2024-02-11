@@ -1,4 +1,4 @@
-﻿namespace Checkout.Domain;
+﻿namespace Checkout.Domain.Services;
 
 /// <summary>
 /// Defines a checkout scanner that scans items and calculates the total amount.

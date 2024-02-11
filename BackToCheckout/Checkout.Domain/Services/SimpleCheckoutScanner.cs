@@ -1,4 +1,6 @@
-﻿namespace Checkout.Domain;
+﻿using Checkout.Domain.Models;
+
+namespace Checkout.Domain.Services;
 
 /// <summary>
 /// Implements <see cref="ICheckoutScanner{TItemId}"/> using char type of item identification.
@@ -44,10 +46,10 @@ public class SimpleCheckoutScanner(IEnumerable<PricingRule> pricingRules) : IChe
             if (specialPrice is not null)
             {
                 // Special price
-                total += (itemsQty / specialPrice.Quantity) * specialPrice.Price;
+                total += itemsQty / specialPrice.Quantity * specialPrice.Price;
 
                 // Normal price
-                total += (itemsQty % specialPrice.Quantity) * pricingRulesDictionary[itemName].NormalPrice;
+                total += itemsQty % specialPrice.Quantity * pricingRulesDictionary[itemName].NormalPrice;
             }
             else
             {

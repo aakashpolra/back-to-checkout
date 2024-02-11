@@ -1,4 +1,4 @@
-﻿namespace Checkout.Domain;
+﻿namespace Checkout.Domain.Models;
 
 /// <summary>
 /// Quantity based special price.
