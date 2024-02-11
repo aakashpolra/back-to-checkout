@@ -8,15 +8,52 @@
 /// Please see:
 /// http://codekata.com/kata/kata09-back-to-the-checkout/
 /// </summary>
-public class SimpleCheckoutScanner : ICheckoutScanner<char>
+public class SimpleCheckoutScanner(IEnumerable<PricingRule> pricingRules) : ICheckoutScanner<char>
 {
-    public void Scan(char itemIdentifier)
+    private Dictionary<char, int> itemsInCarts = new();
+
+    public void Scan(char itemName)
     {
-        throw new NotImplementedException();
+        if (itemsInCarts.ContainsKey(itemName))
+        {
+            itemsInCarts[itemName]++;
+        }
+        else
+        {
+            itemsInCarts.Add(itemName, 1);
+        }
     }
 
     public decimal GetTotal()
     {
-        throw new NotImplementedException();
+        return CalculateTotal(pricingRules, itemsInCarts);
+    }
+
+    // Implementing calculation as a "pure" function
+    private static decimal CalculateTotal(IEnumerable<PricingRule> pricingRules, Dictionary<char, int> itemInCarts)
+    {
+        decimal total = 0;
+        Dictionary<char, PricingRule> pricingRulesDictionary = pricingRules.ToDictionary(rule => rule.Item);
+
+        foreach (var itemName in itemInCarts.Keys)
+        {
+            // Check if special price exists
+            SpecialPrice? specialPrice = pricingRulesDictionary[itemName].SpecialPrice;
+            int itemsQty = itemInCarts[itemName];
+
+            if (specialPrice is not null)
+            {
+                // Special price
+                total += (itemsQty / specialPrice.Quantity) * specialPrice.Price;
+
+                // Normal price
+                total += (itemsQty % specialPrice.Quantity) * pricingRulesDictionary[itemName].NormalPrice;
+            }
+            else
+            {
+                total += itemsQty * pricingRulesDictionary[itemName].NormalPrice;
+            }
+        }
+        return total;
     }
 }
