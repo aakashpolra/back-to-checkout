@@ -17,7 +17,7 @@ Examples:
 	| AAAA  | 180         |
 	| B     | 30          |
 	| BB    | 45          |
-	| BBB   | 85          |
+	| BBB   | 75          |
 	| AB    | 80          |
 	| AAABB | 175         |
 	| ABCD  | 115         |
